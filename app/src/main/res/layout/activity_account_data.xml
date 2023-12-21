@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".AuthorisationActivity">
+
+    <ImageView
+        android:id="@+id/MyUniver"
+        android:layout_width="269dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/img_myuniver_logo" />
+
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="Exit"
+        android:fontFamily="@font/inter_bold"
+        android:textStyle="bold"
+        android:backgroundTint="#0096d5"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newsList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="50px"
+        app:layout_constraintTop_toBottomOf="@+id/MyUniver" />
+<!--        app:layout_constraintTop_toBottomOf="@+id/userName" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/userName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/inter_bold"-->
+<!--        android:textStyle="bold"-->
+<!--        android:backgroundTint="#0096d5"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:text="UserName"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/MyUniver"-->
+<!--        tools:layout_editor_absoluteX="175dp"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
