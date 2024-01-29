@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32"/>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -19,16 +17,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstTry"
-        tools:targetApi="31" >
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
         <activity
-            android:name=".NewsActivity"
+            android:name=".AddAchievementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CodeAuthActivationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CodeRegActivationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AchievementsActivity"
             android:exported="false" />
         <activity
             android:name=".AccountDataActivity"
             android:exported="false"
-            android:label="@string/title_activity_account_data"
-
-            />
+            android:label="@string/title_activity_account_data" />
         <activity
             android:name=".AuthorisationActivity"
             android:exported="true"

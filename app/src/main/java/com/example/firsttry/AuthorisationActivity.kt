@@ -3,18 +3,60 @@ package com.example.firsttry
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.firsttry.retrofit.UserAPI
+import com.example.firsttry.retrofit.requests.UserAuthRequestPost
+import com.example.firsttry.retrofit.response.UserResponsePost
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class AuthorisationActivity : Activity() {
+    fun executeUserAuth(userAuthRequestPost: UserAuthRequestPost, context: Context) {
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://89.111.170.194:4000/")
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val userAPI = retrofit.create(UserAPI::class.java)
+
+        userAPI.auth_user(userAuthRequestPost).enqueue(object: Callback<UserResponsePost> {
+            override fun onResponse(
+                call: Call<UserResponsePost>,
+                response: Response<UserResponsePost>
+            ) {
+                if (response.isSuccessful) {
+                    val intent = Intent(context, CodeAuthActivationActivity::class.java)
+                    intent.putExtra("tfa-token", response.body()?.tfa_token.toString())
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(context, "Ошибка при авторизации пользователя", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponsePost>, t: Throwable) {
+                Toast.makeText(context, "Ошибка при авторизации пользователя", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authorisation)
@@ -28,7 +70,6 @@ class AuthorisationActivity : Activity() {
         val userPassword: EditText = findViewById(R.id.user_password_auth)
         val buttonAuth: Button = findViewById(R.id.button_auth)
         val linkToReg: TextView = findViewById(R.id.link_to_reg)
-        val rememberMe: CheckBox = findViewById(R.id.rememberMe)
         val sharedPreferences = getSharedPreferences("INFO", Context.MODE_PRIVATE)
         val checkBox = sharedPreferences.getString("rememberMe", "")
 
@@ -48,39 +89,13 @@ class AuthorisationActivity : Activity() {
         buttonAuth.setOnClickListener {
             val login = userLogin.text.toString().trim()
             val password = userPassword.text.toString().trim()
-            val db = DbHelper(this, null)
 
-            // Поиск пользователя по паролю и логину
-            // Если есть:
-            if (db.getUser(login, password)){
-                Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show()
-
-                // Сохранение данных пользователя при успешной регистрации
-                val editor = sharedPreferences.edit()
-                editor.putString("login", login)
-                editor.putString("password", password)
-                editor.apply()
-
-                val intent = Intent(this, AccountDataActivity::class.java)
-                userLogin.text.clear()
-                userPassword.text.clear()
-                startActivity(intent)
+            if (login == "" || password == ""){
+                Toast.makeText(this, "Ошибка при авторизации пользователя", Toast.LENGTH_SHORT).show()
             }
-            // Если нет:
             else {
-                Toast.makeText(this, "Неверно введены данные", Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        rememberMe.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked){
-                val editor = sharedPreferences.edit()
-                editor.putString("rememberMe", "True")
-                editor.apply()
-            }else{
-                val editor = sharedPreferences.edit()
-                editor.putString("rememberMe", "False")
-                editor.apply()
+                val context = this
+                executeUserAuth(UserAuthRequestPost(login, password), context)
             }
         }
     }

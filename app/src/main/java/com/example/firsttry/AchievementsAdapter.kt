@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NewsAdapter(var news: List<News>, var context: Context) : RecyclerView.Adapter<NewsAdapter.MyViewHolder>() {
+class AchievementsAdapter(var achievements: List<Achievements>, var context: Context) : RecyclerView.Adapter<AchievementsAdapter.MyViewHolder>() {
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val header: TextView = view.findViewById(R.id.news_activity_header)
@@ -24,25 +24,24 @@ class NewsAdapter(var news: List<News>, var context: Context) : RecyclerView.Ada
     }
 
     override fun getItemCount(): Int {
-        return news.count()
+        return achievements.count()
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.header.text = news[position].header
-        holder.description.text = news[position].description
-        val points = news[position].pointSum.toString()
+        holder.header.text = achievements[position].title
+        holder.description.text = achievements[position].description
+        val points = achievements[position].points
         holder.pointSum.text = "Колличество баллов: $points"
 
         holder.goToNews.setOnClickListener {
-            val intent = Intent(context, NewsActivity::class.java)
+            val intent = Intent(context, AchievementsActivity::class.java)
 
-            intent.putExtra("header", news[position].header)
-            intent.putExtra("description", news[position].description)
-            intent.putExtra("userName", news[position].userName)
-            intent.putExtra("pointSum", points)
-            intent.putExtra("id", news[position].id.toString())
-            intent.putExtra("readiness", news[position].readiness.toString())
+            intent.putExtra("title", achievements[position].title)
+            intent.putExtra("description", achievements[position].description)
+            intent.putExtra("points", achievements[position].points)
+            intent.putExtra("id", achievements[position].id)
 
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
     }

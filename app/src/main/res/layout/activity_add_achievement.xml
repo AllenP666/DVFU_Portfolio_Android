@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddAchievementActivity">
+
+    <Button
+        android:id="@+id/addAchBtn"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="120dp"
+        android:backgroundTint="#0096d5"
+        android:fontFamily="@font/inter_bold"
+        android:text="Добавить достижение"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/achievement_points" />
+
+    <EditText
+        android:id="@+id/achievement_description"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:fontFamily="@font/inter"
+        android:hint="Описание достижения"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="#6a6a6a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/achievement_title"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/achievement_points"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:fontFamily="@font/inter"
+        android:hint="Колличество баллов"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="#6a6a6a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/achievement_description"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/achievement_title"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="104dp"
+        android:ems="10"
+        android:fontFamily="@font/inter"
+        android:hint="Название достижения"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorHint="#6a6a6a"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MyUniverLogo"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/MyUniverLogo"
+        android:layout_width="260dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/img_myuniver_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#0096d5"
+        android:fontFamily="@font/inter_bold"
+        android:text="Вернуться"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,16 +48,6 @@
         android:textColor="@color/black"
         android:hint="Пароль" />
 
-    <CheckBox
-        android:id="@+id/rememberMe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/inter"
-        android:text="Запомнить меня "
-        android:textColor="@color/black"
-        android:textSize="16sp"/>
-
     <Button
         android:id="@+id/button_auth"
         android:layout_width="220dp"
@@ -66,8 +56,13 @@
         android:layout_gravity="center"
         android:fontFamily="@font/inter_bold"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:backgroundTint="#0096d5"
         android:textSize="16sp"
+        android:bottomRightRadius="50dp"
+        android:bottomLeftRadius="50dp"
+        android:topLeftRadius="50dp"
+        android:topRightRadius="50dp"
         android:text="Войти" />
 
     <TextView
