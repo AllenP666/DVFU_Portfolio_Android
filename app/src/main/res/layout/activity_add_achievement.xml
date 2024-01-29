@@ -48,7 +48,7 @@
         android:ems="10"
         android:fontFamily="@font/inter"
         android:hint="Колличество баллов"
-        android:inputType="text"
+        android:inputType="number"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textColorHint="#6a6a6a"
