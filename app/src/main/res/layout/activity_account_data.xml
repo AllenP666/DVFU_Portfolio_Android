@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/button_refresh"
-        android:layout_width="180dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginRight="10dp"
@@ -31,7 +31,7 @@
 
     <Button
         android:id="@+id/button_add_achievement"
-        android:layout_width="180dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="10dp"
